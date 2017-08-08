@@ -1,0 +1,50 @@
+<%= form_with(model: @task, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :task_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.number_field :priority, id: :task_priority %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due %>
+    <%= form.date_select :due, id: :task_due %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>e</th>
+      <th>id</th>
+      <th>complete?</th>
+      <th>title</th>
+      <th>priority</th>
+      <th>category</th>
+      <th>due</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |t| %>
+      <tr>
+        <td><%= link_to 'nuke', t, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'edit', edit_task_path(t) %></td>
+        <td><%= t.id %></td>
+        <td><%= t.is_complete %></td>
+        <td><%= t.title %></td>
+        <td><%= t.priority %></td>
+        <td><%= t.category %></td>
+        <td><%= t.due %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
