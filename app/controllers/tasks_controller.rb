@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     end
     
     def create
-        task = Task.new params[:task].permit(:title, :priority, :due)
+        task = Task.new params[:task].permit(:title, :priority, :due, :is_complete, :category)
         task.save
         redirect_to tasks_url
         # head :no_content
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     
     def update
         task = Task.find(params[:id])
-        task.update(params[:task].permit(:title, :priority, :due))
+        task.update(params[:task].permit(:title, :priority, :due, :is_complete, :category))
         redirect_to tasks_url
         # head :no_content
     end

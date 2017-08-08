@@ -1,7 +1,23 @@
+<%= link_to 'tasks', tasks_url %>
+
 <%= form_with(model: @task, local: true) do |form| %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :task_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select(:category, id: :task_category) do %>
+      <% ['Code', 'DS', 'Math'].each do |c| %>
+        <%= content_tag(:option, c, value: c, selected: c == @task.category) %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :is_complete %>
+    <%= form.check_box :is_complete, id: :task_is_complete %>
   </div>
 
   <div class="field">
